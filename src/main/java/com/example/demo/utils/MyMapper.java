@@ -10,7 +10,7 @@ package com.example.demo.utils;
 public class MyMapper {
 	
 	public void test() {
-		
+		System.out.println("11111");
 	}
 
 }
