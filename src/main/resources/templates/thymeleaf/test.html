@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<link rel="stylesheet" type="text/css" th:href="@{/static/css/my.css}" />
+
+<script th:src="@{/static/vendor/jquery/jquery-3.3.1.min.js}"></script>
+<script th:src="@{/static/js/do.js}"></script>
+
+</head>
+<body>
+
+	<div>
+		用户名：<input th:id="${user.name}" th:name="${user.name}"
+			th:value="${user.name}" /><br> 密码：<input
+			th:value="${user.password}" /><br> 生日：<input
+			th:value="${user.birthDate}" /><br>
+		<!-- 日期格式化 -->
+		生日：<input
+			th:value="${#dates.format(user.birthDate,'yyyy-MM-dd hh:mm:ss a')}" /><br>
+	</div>
+	<hr>
+	<!-- 通过th:object实现与上面相同效果  -->
+	<div th:object="${user}">
+		用户名：<input th:id="*{name}" th:name="*{name}" th:value="*{name}" /><br>
+		密码：<input th:value="*{password}" /><br> 生日：<input
+			th:value="*{birthDate}" /><br>
+		<!-- 日期格式化 -->
+		生日：<input
+			th:value="*{#dates.format(birthDate,'yyyy-MM-dd hh:mm:ss a')}" /><br>
+	</div>
+
+	<hr>
+
+	<!-- 
+	th:text:显示原原本本的内容
+	th:utext:若内容存在css，选渲染出效果
+ -->
+	<div th:text="${user.desc}"></div>
+	<div th:utext="${user.desc}"></div>
+
+	<hr>
+
+	<a th:href="@{http://www.baidu.com}">界面跳转</a>
+	<div class="hjh">测试静态资源引入</div>
+	<button onclick="test()">测试</button>
+
+	<hr>
+	<div>
+		<form th:action="@{/addUser}" th:object="${user}" method="post">
+			用户名：<input th:field="*{name}" /><br> 密码：<input
+				th:field="*{password}" /><br>
+
+			<button type="submit">提交</button>
+		</form>
+	</div>
+
+	<hr>
+	<div th:if="${user.name}=='胡俊豪'">是是是</div>
+
+	<hr>
+
+	<div>
+		<form>
+			<select>
+				<option>请选择</option>
+				<option th:selected="${user.sex==0}">男</option>
+				<option th:selected="${user.sex==1}">女</option>
+			</select>
+		</form>
+	</div>
+	<hr>
+	<div>
+		<table>
+			<tr>
+				<th>账号</th>
+				<th>密码</th>
+				<th>性别</th>
+				<th>生日</th>
+			</tr>
+			<tr th:each="user:${userList}">
+				<td th:text="${user.name}"/>
+				<td th:text="${user.password}"/>
+				<div th:switch="${user.sex}">
+					<td th:case="0">男</td>
+					<td th:case="1">女</td>
+					<!--表示上面都不滿足 -->
+					<td th:case="*">性別未知</td>
+				</div>
+				<td th:text="${#dates.format(user.birthDate,'yyyy-MM-dd hh:mm:ss')}"/>
+			</tr>
+		</table>
+	</div>
+	
+	<hr>
+	
+	<div>
+		<p th:text="#{role.admin}"></p>
+		<p th:text="#{role.superAdmin}"></p>
+		
+		<div th:object=${user}>
+			<div th:switch="*{sex}">
+				<span th:case="#{sex.man}">男</span>
+				<span th:case="#{sex.woman}">女</span>
+			</div>
+		</div>	
+	</div>
+
+<hr>
+<button onclick="errTest()">异常测试</button>
+</body>
+</html>
