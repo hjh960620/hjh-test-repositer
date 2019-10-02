@@ -9,6 +9,7 @@ import java.util.List;
 
 import com.example.demo.domain.OssUser;
 import com.example.demo.domain.User;
+import com.example.demo.domain.UserQuarm;
 
 /**
  * @author Administrator
@@ -17,9 +18,16 @@ import com.example.demo.domain.User;
 public interface UserService {
 	
 	 void addUser(OssUser user);
-	 User getUseById(Integer id);
-	 List<User> getUserList();
+
+	OssUser getUseById(Integer id);
+
+	List<OssUser> getUserList();
 	 void deleteUser(Integer id);
 	 void updateUser(OssUser user);
+
+	List<OssUser> getUserByQuarm(UserQuarm userQuarm);
+
+	//自定义mapper测试
+	List<OssUser> loadUserList();
 
 }
