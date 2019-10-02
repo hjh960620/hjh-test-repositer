@@ -12,11 +12,11 @@ import org.springframework.context.annotation.PropertySource;
  *
  */
 //声明该类会引用资源文件
-@Configuration
+//@Configuration
 //为字段加上前缀，对应资源文件
-@ConfigurationProperties(prefix = "com.hjh")
+//@ConfigurationProperties(prefix = "com.hjh")
 //声明配置文件的位置
-@PropertySource(value = "classpath:resource.properties")
+//@PropertySource(value = "classpath:resource.properties")
 public class UserResource {
 	
 	private String name;
@@ -40,6 +40,4 @@ public class UserResource {
 	}
 	
 	
-	
-
 }
