@@ -43,10 +43,11 @@ public class Tester {
 		}
 
 		long end = System.currentTimeMillis();
+		long time = end - star;
 		OssUser user = new OssUser();
 		user.setId(1111);
 		user.setIsAdmin("0");
-		
+
 		System.out.println("任务完成，总耗时：" + (end - star) + "毫秒");
 
 	}

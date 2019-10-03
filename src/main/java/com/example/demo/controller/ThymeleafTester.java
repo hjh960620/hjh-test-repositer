@@ -48,12 +48,20 @@ public class ThymeleafTester {
 		user3.setSex(0);
 		user3.setBirthDate(new Date());
 		user3.setDesc("<font color='green'>hello word</font>");
+
+		User user4 = new User();
+		user4.setName("胡俊豪3");
+		user4.setPassword("123456qwe");
+		user4.setSex(0);
+		user4.setBirthDate(new Date());
+		user4.setDesc("<font color='green'>hello word</font>");
 		
 		List<User>userList = new ArrayList<>();
 		userList.add(user1);
 		userList.add(user2);
 		userList.add(user3);
-		
+
+
 		modelAndView.addObject("user", user1);
 		modelAndView.addObject("userList",userList);
 		modelAndView.setViewName("/test");
