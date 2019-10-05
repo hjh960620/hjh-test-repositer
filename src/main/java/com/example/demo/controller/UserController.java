@@ -1,9 +1,4 @@
-/**
- * 
- */
 package com.example.demo.controller;
-
-
 
 import java.util.Date;
 import java.util.List;
@@ -11,6 +6,8 @@ import java.util.List;
 import com.example.demo.domain.*;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +22,8 @@ import com.example.demo.service.UserService;
  */
 @RestController()
 public class UserController {
+
+	private static final Logger log = LoggerFactory.getLogger(UserController.class);
 	
 	@Autowired
 	UserService userService;
@@ -55,6 +54,8 @@ public class UserController {
 		user.setUserPwd("123456");
 		user.setUserPhone("123123123");
 
+		log.error("更新用户出现错误");
+
 		userService.updateUser(user);
 
 		return Result.success("");
@@ -69,6 +70,7 @@ public class UserController {
 
 	@RequestMapping(value = "/getUser")
 	public Result getUserById() {
+		log.info("日志测试");
 		return Result.success(userService.getUseById(66));
 	}
 
