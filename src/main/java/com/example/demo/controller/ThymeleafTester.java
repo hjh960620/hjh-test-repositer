@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +23,7 @@ import com.example.demo.domain.User;
  * @author Administrator
  *
  */
+@Slf4j
 @Controller
 public class ThymeleafTester {
 	
@@ -60,6 +62,9 @@ public class ThymeleafTester {
 		userList.add(user1);
 		userList.add(user2);
 		userList.add(user3);
+
+		log.info("日志测试");
+		log.info(user1.toString());
 
 
 		modelAndView.addObject("user", user1);
